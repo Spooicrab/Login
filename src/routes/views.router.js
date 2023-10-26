@@ -31,4 +31,8 @@ ViewsRouter.post("/products", async (req, res) => {
     } catch (err) { res.status(500).json({ error: err.message }) }
 });
 
+ViewsRouter.get("/login", async (req, res) => {
+    res.render('login')
+})
+
 export default ViewsRouter

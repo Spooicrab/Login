@@ -10,6 +10,7 @@ import ProductRouter from "./routes/Product.router.js";
 import CartRouter from "./routes/Cart.router.js";
 import { CartM } from "./dao/mongo/CartManager.js";
 import { ProductManager } from "./dao/mongo/ProductManager.js";
+import CookieRouter from "./routes/cookies.router.js";
 
 const app = express()
 
@@ -25,6 +26,7 @@ app.use('/api/products', ProductRouter)
 app.use('/views', ViewsRouter)
 app.use('/chat', ChatRouter)
 app.use('/api/carts', CartRouter)
+app.use('/', CookieRouter)
 
 const Port8080 = app.listen(8080, () => {
     console.log("ando en el puerto 8080")
@@ -54,5 +56,4 @@ Sserver.on("connection", (socket) => {
             socket.emit('Agregado');
         } catch (error) { throw error; }
     });
-
 });
