@@ -35,4 +35,8 @@ ViewsRouter.get("/login", async (req, res) => {
     res.render('login')
 })
 
+ViewsRouter.get('/registro', async (req, res) => {
+    res.render('registro')
+})
+
 export default ViewsRouter

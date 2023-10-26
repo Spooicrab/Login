@@ -10,13 +10,22 @@ import ProductRouter from "./routes/Product.router.js";
 import CartRouter from "./routes/Cart.router.js";
 import { CartM } from "./dao/mongo/CartManager.js";
 import { ProductManager } from "./dao/mongo/ProductManager.js";
-import CookieRouter from "./routes/cookies.router.js";
+import CookieRouter from "./routes/users.router.js";
+import cookieParser from "cookie-parser";
+import session from "express-session";
 
 const app = express()
 
+app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'))
+
+app.use(session({
+    secret: 'secretoo',
+    cookie: { maxAge: 60 * 60 * 1000 }
+}))
+
 
 app.engine('handlebars', handlebars.engine())
 app.set('views', __dirname + '/views')
@@ -26,7 +35,7 @@ app.use('/api/products', ProductRouter)
 app.use('/views', ViewsRouter)
 app.use('/chat', ChatRouter)
 app.use('/api/carts', CartRouter)
-app.use('/', CookieRouter)
+app.use('/api/users', CookieRouter)
 
 const Port8080 = app.listen(8080, () => {
     console.log("ando en el puerto 8080")
