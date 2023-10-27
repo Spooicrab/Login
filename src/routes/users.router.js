@@ -9,10 +9,8 @@ UserRouter.post("/login", async (req, res) => {
     req.session["email"] = email;
     req.session["first_name"] = userDB.first_name;
     req.session['last_name'] = userDB.last_name
-
-    if (email === "adminCoder@coder.com" && password === "Cod3r123") {
-        req.session["isAdmin"] = true;
-    }
+    req.session['isAdmin'] =
+        email === "adminCoder@coder.com" && password === "Cod3r123" ? true : false
     res.redirect("/views/products");
 });
 
@@ -22,3 +20,4 @@ UserRouter.post("/signup", async (req, res) => {
     res.status(200).json({ message: "User created", createdUser });
 });
 export default UserRouter;
+
