@@ -3,7 +3,10 @@
   #productos>div { background-color: #f2f2f2; padding: 20px; border-radius: 5px;
   text-align: center; }
 </style>
-
+<section>
+  <h2>Bienvenvenido, {{first_name}}</h2>
+  <p>mail: {{email}}</p>
+</section>
 <div id="productos">
   {{#each Productos}}
     <div>
@@ -15,63 +18,19 @@
     </div>
   {{/each}}
 </div>
-
-<h2 style="color: #333; font-family: Arial, sans-serif; font-size: 24px;">CREAR
-  PRODUCTO</h2>
+{{! <h2 style="color: #333; font-family: Arial, sans-serif; font-size: 24px;">CREAR PRODUCTO</h2>
 <form action="/views/products" method="post" style="margin-top: 20px;">
-  <label
-    for="title"
-    style="display: block; margin-bottom: 10px;"
-  >Nombre:</label>
-  <input
-    type="text"
-    name="title"
-    id="title"
-    style="padding: 5px; width: 200px;"
-  />
-
-  <label
-    for="price"
-    style="display: block; margin-bottom: 10px;"
-  >Precio:</label>
-  <input
-    type="number"
-    name="price"
-    id="price"
-    style="padding: 5px; width: 200px;"
-  />
-
+  <label for="title" style="display: block; margin-bottom: 10px;">Nombre:</label>
+  <input type="text" name="title" id="title" style="padding: 5px; width: 200px;" />
+  <label for="price" style="display: block; margin-bottom: 10px;">Precio:</label>
+  <input type="number" name="price" id="price" style="padding: 5px; width: 200px;" />
   <label for="code" style="display: block; margin-bottom: 10px;">Code</label>
-  <input
-    type="number"
-    name="code"
-    id="code"
-    style="padding: 5px; width: 200px;"
-  />
-
+  <input type="number" name="code" id="code" style="padding: 5px; width: 200px;" />
   <label for="stock" style="display: block; margin-bottom: 10px;">Stock</label>
-  <input
-    type="number"
-    name="stock"
-    id="stock"
-    style="padding: 5px; width: 200px;"
-  />
-
-  <label
-    for="description"
-    style="display: block; margin-bottom: 10px;"
-  >Descripción:</label>
-  <input
-    type="text"
-    name="description"
-    id="description"
-    style="padding: 5px; width: 200px;"
-  />
-  <input
-    type="submit"
-    value="CREAR"
-    style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer; margin-top: 10px;"
-  />
-</form>
+  <input type="number" name="stock" id="stock" style="padding: 5px; width: 200px;" />
+  <label for="description" style="display: block; margin-bottom: 10px;">Descripción:</label>
+  <input type="text" name="description" id="description" style="padding: 5px; width: 200px;" />
+  <input type="submit" value="CREAR" style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer; margin-top: 10px;" />
+</form> }}
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/allproducts.js"></script>

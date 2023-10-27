@@ -4,8 +4,8 @@ import handlebars from "express-handlebars";
 import "./dao/config.js"
 import { __dirname } from "./utils.js";
 import ViewsRouter from './routes/views.router.js'
-import { Chat } from "./dao/mongo/Chatmanager.js";
-import ChatRouter from "./routes/Chat.router.js";
+// import { Chat } from "./dao/mongo/Chatmanager.js";
+// import ChatRouter from "./routes/Chat.router.js";
 import ProductRouter from "./routes/Product.router.js";
 import CartRouter from "./routes/Cart.router.js";
 import { CartM } from "./dao/mongo/CartManager.js";
@@ -24,12 +24,8 @@ app.use(express.static(__dirname + '/public'))
 
 app.use(session({
     secret: 'secretoo',
-    cookie: { maxAge: 60 * 60 * 1000 },
-    store: new mongoStore(
-        {
-            mongoUrl: URI,
-        }
-    )
+    cookie: { maxAge: 600000 },
+    store: new mongoStore({ mongoUrl: URI })
 }))
 
 
@@ -39,7 +35,7 @@ app.set('view engine', 'handlebars')
 
 app.use('/api/products', ProductRouter)
 app.use('/views', ViewsRouter)
-app.use('/chat', ChatRouter)
+// app.use('/chat', ChatRouter)
 app.use('/api/carts', CartRouter)
 app.use('/api/users', UserRouter)
 
@@ -52,11 +48,11 @@ const Sserver = new Server(Port8080)
 Sserver.on("connection", (socket) => {
     console.log(`Cliente conectado: ${socket.id}`);
 
-    socket.on("Mensaje", async (obj) => {
-        const Mensajes = await Chat.Add(obj)
-        const Chats = await Chat.GetAll({})
-        socket.emit("OK", Chats)
-    })
+    // socket.on("Mensaje", async (obj) => {
+    //     const Mensajes = await Chat.Add(obj)
+    //     const Chats = await Chat.GetAll({})
+    //     socket.emit("OK", Chats)
+    // })
     socket.on('CrearCarrito', async (data) => {
         const productId = data
         const IdCarritoCreado = await CartM.CrearCarrito();
