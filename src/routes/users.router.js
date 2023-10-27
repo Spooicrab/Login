@@ -10,7 +10,7 @@ UserRouter.post("/login", async (req, res) => {
     req.session["first_name"] = userDB.first_name;
     req.session['last_name'] = userDB.last_name
     req.session['isAdmin'] =
-        email === "adminCoder@coder.com" && password === "Cod3r123" ? true : false
+        email === "adminCoder@coder.com" && password === "Cod3r123" ? "admin" : "User"
     res.redirect("/views/products");
 });
 

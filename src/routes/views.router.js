@@ -13,8 +13,8 @@ const ViewsRouter = Router()
 
 ViewsRouter.get("/products", async (req, res) => {
     let Productos = await ProductManager.GetAll(req.query)
-    const { first_name, email } = req.session
-    res.render('allproducts', ({ Productos, first_name, email }))
+    const { first_name, email, isAdmin } = req.session
+    res.render('allproducts', ({ Productos, first_name, email, isAdmin }))
 })
 
 ViewsRouter.get("/cart/:cid", async (req, res) => {
