@@ -20,4 +20,3 @@ UserRouter.post("/signup", async (req, res) => {
     res.status(200).json({ message: "User created", createdUser });
 });
 export default UserRouter;
-
