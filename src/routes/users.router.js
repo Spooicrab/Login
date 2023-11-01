@@ -11,7 +11,13 @@ UserRouter.post("/login", async (req, res) => {
     req.session['last_name'] = userDB.last_name
     req.session['isAdmin'] =
         email === "adminCoder@coder.com" && password === "Cod3r123" ? "admin" : "User"
-    res.redirect("/views/products");
+    if (userDB.password === password) {
+        res.redirect("/views/products")
+    } else {
+        return res.json({ error: "Verifique los datos ingresados" })
+    }
+    // console.log('datos en db', userDB)
+    // console.log('datos ingresados', req.body);
 });
 
 UserRouter.post("/signup", async (req, res) => {
